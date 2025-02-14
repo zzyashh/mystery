@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine's Day</title>
+  <title>Valentine's Day 💖</title>
   <style>
     body {
       margin: 0;
@@ -12,52 +12,110 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+      background: linear-gradient(135deg, #ff4d6d, #ff758c);
       font-family: 'Arial', sans-serif;
       overflow: hidden;
       position: relative;
+      animation: bgAnimation 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes bgAnimation {
+      0% { background: linear-gradient(135deg, #ff4d6d, #ff758c); }
+      100% { background: linear-gradient(135deg, #ff758c, #ff4d6d); }
     }
 
     .container {
       text-align: center;
       color: white;
+      transition: all 0.5s ease-in-out;
     }
 
     h1 {
       font-size: 3rem;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: pulseText 2s infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.05); opacity: 0.9; }
     }
 
     .buttons {
       margin-top: 20px;
     }
 
-    .yes-button, .no-button {
+    .yes-button {
       padding: 15px 30px;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       margin: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .yes-button {
       background: #ff4d4d;
       color: white;
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+      animation: glow 1.5s infinite alternate;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yes-button::before {
+      content: "";
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.2);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, opacity 0.3s;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .yes-button:hover::before {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 15px rgba(255, 77, 77, 0.8); }
+      100% { box-shadow: 0 0 30px rgba(255, 77, 77, 1); }
     }
 
     .no-button {
       background: #ffcccb;
       color: #333;
       position: absolute;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .no-button:hover {
+      animation: shake 0.5s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(10px); }
     }
 
     .celebrate-screen {
       display: none;
       text-align: center;
       color: white;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     .slideshow {
@@ -83,68 +141,31 @@
       object-fit: cover;
     }
 
-    .balloons, .hearts {
+    .floating-hearts {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
+      top: 0;
+      left: 0;
       pointer-events: none;
-    }
-
-    .balloon, .heart {
-      position: absolute;
-      font-size: 2rem;
-      animation: float 6s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
     }
 
     .heart {
-      color: #ff4d4d;
-    }
-
-    .balloon {
-      color: #ffcccb;
-    }
-
-    .paragraph {
-      margin: 20px auto;
-      width: 80%;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Additional Decorations */
-    .decor {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
+      color: red;
+      font-size: 2rem;
+      animation: floatUp 4s infinite linear;
     }
 
-    .decor span {
-      position: absolute;
-      font-size: 1.5rem;
-      animation: float 5s infinite ease-in-out;
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
     }
-
-    .decor span:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .decor span:nth-child(2) { left: 30%; animation-delay: 2s; }
-    .decor span:nth-child(3) { left: 50%; animation-delay: 4s; }
-    .decor span:nth-child(4) { left: 70%; animation-delay: 1s; }
-    .decor span:nth-child(5) { left: 90%; animation-delay: 3s; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Will you be my Valentine?</h1>
+    <h1>Will you be my Valentine? 💖</h1>
     <div class="buttons">
       <button class="yes-button" onclick="showCelebration()">Yes</button>
       <button class="no-button" onmouseover="moveNoButton()">No</button>
@@ -152,10 +173,9 @@
   </div>
 
   <div class="celebrate-screen">
-    <h1>Type shiii, here's some tuff flicks of us 🤳 (the only ones we got)</h1>
-    <p class="paragraph">
-      <!-- Add your custom paragraph text here -->
-      You mean the world to me, and I'm so grateful to have you in my life. 🌍 Let's make this Valentine's Day unforgettable! 💖 (hopefully the next one is in person) 😅
+    <h1>Happy Valentine's Day, my love! 💖</h1>
+    <p>
+      You mean the world to me, and I'm so grateful to have you in my life. Let's make this Valentine's Day unforgettable! 💕
     </p>
     <div class="slideshow">
       <img src="Images/IMG_1972.jpg" alt="Photo 1">
@@ -165,35 +185,7 @@
     </div>
   </div>
 
-  <div class="balloons">
-    <div class="balloon" style="left: 10%; animation-delay: 0s;">🎈</div>
-    <div class="balloon" style="left: 30%; animation-delay: 2s;">🎈</div>
-    <div class="balloon" style="left: 50%; animation-delay: 4s;">🎈</div>
-    <div class="balloon" style="left: 70%; animation-delay: 1s;">🎈</div>
-    <div class="balloon" style="left: 90%; animation-delay: 3s;">🎈</div>
-  </div>
-
-  <div class="hearts">
-    <div class="heart" style="left: 5%; animation-delay: 0s;">❤️</div>
-    <div class="heart" style="left: 25%; animation-delay: 1s;">❤️</div>
-    <div class="heart" style="left: 45%; animation-delay: 2s;">❤️</div>
-    <div class="heart" style="left: 65%; animation-delay: 3s;">❤️</div>
-    <div class="heart" style="left: 85%; animation-delay: 4s;">❤️</div>
-  </div>
-
-  <div class="decor">
-    <span>💖</span>
-    <span>💕</span>
-    <span>💘</span>
-    <span>💓</span>
-    <span>💞</span>
-  </div>
-
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="valentinex27s-day-music-romantic-love-piano-background-theme-294217.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <div class="floating-hearts"></div>
 
   <script>
     function moveNoButton() {
@@ -202,11 +194,27 @@
       const randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
       noButton.style.left = `${randomX}px`;
       noButton.style.top = `${randomY}px`;
+      noButton.style.transform = `scale(${Math.random() * 1.5 + 0.5})`;
     }
 
     function showCelebration() {
       document.querySelector('.container').style.display = 'none';
       document.querySelector('.celebrate-screen').style.display = 'block';
+
+      spawnHearts();
+    }
+
+    function spawnHearts() {
+      const heartsContainer = document.querySelector('.floating-hearts');
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
     }
   </script>
 </body>
