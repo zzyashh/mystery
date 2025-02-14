@@ -69,6 +69,8 @@
       padding: 10px;
       background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
+      justify-content: center;
+      align-items: center;
     }
 
     .slideshow img {
@@ -108,6 +110,36 @@
     .balloon {
       color: #ffcccb;
     }
+
+    .paragraph {
+      margin: 20px auto;
+      width: 80%;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Additional Decorations */
+    .decor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .decor span {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .decor span:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .decor span:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .decor span:nth-child(3) { left: 50%; animation-delay: 4s; }
+    .decor span:nth-child(4) { left: 70%; animation-delay: 1s; }
+    .decor span:nth-child(5) { left: 90%; animation-delay: 3s; }
   </style>
 </head>
 <body>
@@ -120,12 +152,16 @@
   </div>
 
   <div class="celebrate-screen">
-    <h1>Yay! Let's Celebrate!</h1>
+    <h1>Type shiii, here's some tuff flicks of us 🤳 (the only ones we got)</h1>
+    <p class="paragraph">
+      <!-- Add your custom paragraph text here -->
+      You mean the world to me, and I'm so grateful to have you in my life. 🌍 Let's make this Valentine's Day unforgettable! 💖 (hopefully the next one is in person) 😅
+    </p>
     <div class="slideshow">
-      <img src="Images/IMG_3078.jpg" alt="Photo 1">
+      <img src="Images/IMG_1972.jpg" alt="Photo 1">
       <img src="Images/IMG_3078.jpg" alt="Photo 2">
-      <img src="Images/IMG_3078.jpg" alt="Photo 3">
-      <img src="Images/IMG_1972.jpg" alt="Photo 4">
+      <img src="Images/IMG_3091.jpg" alt="Photo 3">
+      <img src="Images/IMG_4391.jpg" alt="Photo 4">
     </div>
   </div>
 
@@ -144,6 +180,20 @@
     <div class="heart" style="left: 65%; animation-delay: 3s;">❤️</div>
     <div class="heart" style="left: 85%; animation-delay: 4s;">❤️</div>
   </div>
+
+  <div class="decor">
+    <span>💖</span>
+    <span>💕</span>
+    <span>💘</span>
+    <span>💓</span>
+    <span>💞</span>
+  </div>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     function moveNoButton() {
