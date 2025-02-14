@@ -141,6 +141,7 @@
       object-fit: cover;
     }
 
+    /* Floating Hearts - Always Present */
     .floating-hearts {
       position: absolute;
       width: 100%;
@@ -154,12 +155,22 @@
       position: absolute;
       color: red;
       font-size: 2rem;
-      animation: floatUp 4s infinite linear;
+      animation: floatUp 5s infinite linear;
     }
 
     @keyframes floatUp {
       0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
       100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Confetti Hearts - Appear on "Yes" Click */
+    .confetti-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -173,9 +184,9 @@
   </div>
 
   <div class="celebrate-screen">
-    <h1>Happy Valentines Day! 💝, here's some tuff flicks of us 🤳 (the only ones we got type shii)</h1>
+    <h1>Happy Valentine's Day, my love! 💖</h1>
     <p>
-      You mean the world to me, and I'm so grateful to have you in my life. 🌍 Let's make this Valentine's Day unforgettable! 💖 (hopefully the next one is in person) 😅
+      You mean the world to me, and I'm so grateful to have you in my life. Let's make this Valentine's Day unforgettable! 💕
     </p>
     <div class="slideshow">
       <img src="Images/IMG_1972.jpg" alt="Photo 1">
@@ -186,6 +197,7 @@
   </div>
 
   <div class="floating-hearts"></div>
+  <div class="confetti-hearts"></div>
 
   <script>
     function moveNoButton() {
@@ -200,22 +212,23 @@
     function showCelebration() {
       document.querySelector('.container').style.display = 'none';
       document.querySelector('.celebrate-screen').style.display = 'block';
-
-      spawnHearts();
+      spawnHearts(".confetti-hearts", 20);
     }
 
-    function spawnHearts() {
-      const heartsContainer = document.querySelector('.floating-hearts');
-      for (let i = 0; i < 20; i++) {
+    function spawnHearts(containerClass, count) {
+      const container = document.querySelector(containerClass);
+      for (let i = 0; i < count; i++) {
         let heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
       }
     }
+
+    spawnHearts(".floating-hearts", 10);
   </script>
 </body>
 </html>
