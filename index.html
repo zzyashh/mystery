@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .yes-button, .no-button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .yes-button {
+      background: #ff4d4d;
+      color: white;
+    }
+
+    .no-button {
+      background: #ffcccb;
+      color: #333;
+      position: absolute;
+    }
+
+    .celebrate-screen {
+      display: none;
+      text-align: center;
+      color: white;
+    }
+
+    .slideshow {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      width: 80vw;
+      margin: 20px auto;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+    }
+
+    .slideshow img {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 300px;
+      height: 200px;
+      margin-right: 10px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .balloons, .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .balloon, .heart {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .heart {
+      color: #ff4d4d;
+    }
+
+    .balloon {
+      color: #ffcccb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+      <button class="yes-button" onclick="showCelebration()">Yes</button>
+      <button class="no-button" onmouseover="moveNoButton()">No</button>
+    </div>
+  </div>
+
+  <div class="celebrate-screen">
+    <h1>Yay! Let's Celebrate!</h1>
+    <div class="slideshow">
+      <img src="https://via.placeholder.com/300x200?text=Photo+1" alt="Photo 1">
+      <img src="https://via.placeholder.com/300x200?text=Photo+2" alt="Photo 2">
+      <img src="https://via.placeholder.com/300x200?text=Photo+3" alt="Photo 3">
+      <img src="https://via.placeholder.com/300x200?text=Photo+4" alt="Photo 4">
+    </div>
+  </div>
+
+  <div class="balloons">
+    <div class="balloon" style="left: 10%; animation-delay: 0s;">🎈</div>
+    <div class="balloon" style="left: 30%; animation-delay: 2s;">🎈</div>
+    <div class="balloon" style="left: 50%; animation-delay: 4s;">🎈</div>
+    <div class="balloon" style="left: 70%; animation-delay: 1s;">🎈</div>
+    <div class="balloon" style="left: 90%; animation-delay: 3s;">🎈</div>
+  </div>
+
+  <div class="hearts">
+    <div class="heart" style="left: 5%; animation-delay: 0s;">❤️</div>
+    <div class="heart" style="left: 25%; animation-delay: 1s;">❤️</div>
+    <div class="heart" style="left: 45%; animation-delay: 2s;">❤️</div>
+    <div class="heart" style="left: 65%; animation-delay: 3s;">❤️</div>
+    <div class="heart" style="left: 85%; animation-delay: 4s;">❤️</div>
+  </div>
+
+  <script>
+    function moveNoButton() {
+      const noButton = document.querySelector('.no-button');
+      const randomX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      const randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.left = `${randomX}px`;
+      noButton.style.top = `${randomY}px`;
+    }
+
+    function showCelebration() {
+      document.querySelector('.container').style.display = 'none';
+      document.querySelector('.celebrate-screen').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
